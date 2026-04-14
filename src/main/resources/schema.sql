@@ -38,6 +38,7 @@ create table server
     id               integer      not null,
     ip               varchar(255) not null,
     last_update_date timestamp,
+    created_date timestamp,
     name             varchar(255) not null,
     version          bigint,
     primary key (id)

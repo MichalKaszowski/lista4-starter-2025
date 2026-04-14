@@ -11,7 +11,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -30,6 +34,12 @@ public class Server {
     @Column(nullable = false)
     private String ip;
 
+    @Column(nullable = false)
+    private LocalDateTime createdDate = LocalDateTime.now();
+
+    @Column
+    private Date lastUpdateDate;
+
     public Server(String name, String ip) {
         super();
         this.name = name;
@@ -41,10 +51,10 @@ public class Server {
         return null;
     }
 
-    public LocalDateTime getCreatedDate(){
-        //TODO: remove it
-        return null;
-    }
+//    public LocalDateTime getCreatedDate(){
+//        //TODO: remove it
+//        return null;
+//    }
 
     public LocalDateTime getLastUpdateDate(){
         //TODO: remove it
