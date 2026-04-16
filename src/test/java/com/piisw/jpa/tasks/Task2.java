@@ -1,9 +1,13 @@
 package com.piisw.jpa.tasks;
 
 import com.piisw.jpa.entities.Event;
+import com.piisw.jpa.repositories.EventRepository;
+import com.piisw.jpa.repositories.ServerRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
@@ -16,6 +20,8 @@ import static org.hamcrest.Matchers.notNullValue;
 @DataJpaTest
 class Task2 {
 
+    @Autowired
+    private EventRepository eventRepository;
 
     @Test
     void shouldFindOneEntryBetweenDatesThatMustBeAnalyzed() throws Exception {
@@ -28,7 +34,8 @@ class Task2 {
         Sort sort = Sort.unsorted();
 
         // when
-        Page<Event> result = null;
+        Page<Event> result = eventRepository.findByTimeBetweenAndAnalysisRequired(
+                start, end, toBeAnalyzed, PageRequest.of(page, pageSize, sort));
 
         // then
         assertThat(result, is(notNullValue()));
@@ -46,7 +53,9 @@ class Task2 {
         Sort sort = Sort.by("time");
 
         // when
-        Page<Event> result = null;
+        Page<Event> result = eventRepository.findByTimeBetweenAndAnalysisRequired(
+                start, end, toBeAnalyzed, PageRequest.of(page, pageSize, sort));
+
 
         // then
         assertThat(result, is(notNullValue()));
@@ -66,7 +75,9 @@ class Task2 {
         Sort sort = Sort.by("time");
 
         // when
-        Page<Event> result = null;
+        Page<Event> result = eventRepository.findByTimeBetweenAndAnalysisRequired(
+                start, end, toBeAnalyzed, PageRequest.of(page, pageSize, sort));
+
 
         // then
         assertThat(result.getTotalElements(), is(0L));

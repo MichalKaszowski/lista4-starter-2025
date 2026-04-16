@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 
 import java.util.Optional;
@@ -21,7 +22,7 @@ class Task5 {
     @Autowired
     private ServerService serverService;
 
-    @Autowired // TODO: configure as mockrepository
+    @MockitoBean
     private ServerRepository serverRepositoryMock;
 
     @Test

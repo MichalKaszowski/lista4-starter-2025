@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.transaction.TestTransaction;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -75,7 +76,9 @@ class Task1 {
         serverRepository.deleteById(server.getId());
         TestTransaction.end();
 
+
         // then
         assertThat(serverRepository.findById(server.getId()).isPresent(), is(false));
+//        assertThat("Soft deleted value mustn't be deleted entirely", serverRepository.getSoftDeleted().size(), is(1));
     }
 }

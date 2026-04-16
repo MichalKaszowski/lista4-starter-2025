@@ -41,6 +41,7 @@ create table server
     created_date timestamp,
     name             varchar(255) not null,
     version          bigint,
+    is_active        boolean      default true not null,
     primary key (id)
 );
 create table sql_event
