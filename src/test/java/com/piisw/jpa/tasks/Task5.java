@@ -5,6 +5,7 @@ import com.piisw.jpa.repositories.ServerRepository;
 import com.piisw.jpa.services.ServerService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -44,7 +45,7 @@ class Task5 {
     }
 
     private void whenSerachingForNameReturn(String serverName, Server dummyServer) {
-        // TODO: add your mock definition here
+        Mockito.when(serverRepositoryMock.findByName(serverName)).thenReturn(Optional.of(dummyServer));
     }
 
     @TestConfiguration
